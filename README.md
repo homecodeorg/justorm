@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/amo/dw/justorm?style=flat-square)](https://www.npmjs.com/package/justorm)
+[![npm](https://img.shields.io/npm/dm/justorm?style=flat-square)](https://www.npmjs.com/package/justorm)
 
 Just Store Manager
 ====
