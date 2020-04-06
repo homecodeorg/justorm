@@ -28,7 +28,7 @@ export create('user', {
 
 ### 2. Subscribe to store
 
-Spicify store fields, that you want get updates from.
+Specify store fields, that you want get updates from.
 
 ```js
 // src/components/App.jsx
