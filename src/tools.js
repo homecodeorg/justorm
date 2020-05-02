@@ -1,4 +1,15 @@
-module.exports = function set(obj, path, value) {
+function get(obj, path) {
+  var val = obj;
+
+  for (var i = 0; i < path.length; i++) {
+    val = val[path[i]];
+    if (!val) return null
+  }
+
+  return val
+};
+
+function set(obj, path, value) {
   const len = path.length;
 
   for (let i = 0; i < len - 1; i++) {
@@ -11,3 +22,6 @@ module.exports = function set(obj, path, value) {
 
   obj[path[len - 1]] = value;
 };
+
+
+module.exports = { get, set }

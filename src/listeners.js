@@ -1,10 +1,9 @@
-var get = require('./tools/get');
-var set = require('./tools/set');
+import { get, set } from './tools';
 
-var LISTENERS = {};
+const LISTENERS = {};
 
-function subscribe(path, cb) {
-  var currListeners = get(LISTENERS, path);
+export function subscribe(path, cb) {
+  const currListeners = get(LISTENERS, path);
 
   if (!currListeners) {
     set(LISTENERS, path, [cb]);
@@ -14,35 +13,29 @@ function subscribe(path, cb) {
   if (currListeners.indexOf(cb) === -1) currListeners.push(cb);
 }
 
-function unsubscribe(path, cb) {
-  var currListeners = get(LISTENERS, path);
+export function unsubscribe(path, cb) {
+  const currListeners = get(LISTENERS, path);
 
   if (!currListeners) return;
 
-  var index = currListeners.indexOf(cb);
+  const index = currListeners.indexOf(cb);
 
   if (index === -1) return;
 
   set(
     LISTENERS,
     path,
-    LISTENERS.slice(0, index).concat(LISTENERS.slice(index + 1))
+    currListeners.slice(0, index).concat(currListeners.slice(index + 1))
   );
 }
 
-function call(path) {
-  for (var i = 1; i <= path.length; i++) {
-    var listeners = get(LISTENERS, path.slice(0, i));
+export function call(path) {
+  for (let i = 1; i <= path.length; i++) {
+    const listeners = get(LISTENERS, path.slice(0, i));
 
     if (Array.isArray(listeners)) {
       listeners.forEach(function (cb) { cb() });
       return;
     }
   }
-}
-
-module.exports = {
-  subscribe: subscribe,
-  unsubscribe: unsubscribe,
-  call: call
 }

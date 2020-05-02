@@ -1,6 +1,6 @@
 {
   "name": "justorm",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Just store manager.",
   "author": "Oleg Apostol",
   "license": "ISC",
@@ -19,12 +19,18 @@
     "preact",
     "react"
   ],
-  "main": "./",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production"
+    "build": "webpack",
+    "build:dev": "webpack --mode=development",
+    "dev": "webpack --mode=development --watch"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^3.10.3"
   },
   "devDependencies": {
+    "preact": "^10.4.0",
     "terser-webpack-plugin": "^2.3.5",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"

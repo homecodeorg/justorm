@@ -4,18 +4,48 @@ Just Store Manager
 ====
 Simple store manager based on [Proxy](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 
-
 🌈 Welcome to write plugins for your favourite frameworks (see [preact plugin](src/preact/index.js)).
 
-### 1. Create store
+## Create local store
+
+_Better state._
+
+```js
+import { h, Component } from 'preact';
+import { createStore } from 'justorm/preact';
+
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.store = createStore(this, { count: 0 });
+  }
+
+  onClick = () => {
+    this.store.count++;
+  }
+
+  render() {
+    const { count } = this.store;
+
+    return [
+      'Hi there!',
+      count,
+      <button onClick={this.onClick}>click me</button>
+    ];
+  }
+}
+
+```
+
+## Create shared store
 
 Describe store and actions in one place.
 
 ```js
 // src/store/user.js
-import { create } from 'justorm/preact';
+import { createStore } from 'justorm/preact';
 
-export create('user', {
+export createStore('user', {
   isLogged: false,
   login() {
     this.isLogged = true;
@@ -26,7 +56,7 @@ export create('user', {
 });
 ```
 
-### 2. Subscribe to store
+## Subscribe to store
 
 Specify store fields, that you want get updates from.
 
@@ -44,3 +74,22 @@ export withStore({ user: ['isLogged'] })(function App({ store }) {
   return <button onClick={onClick}>{text}</button>;
 });
 ```
+
+Use `withStore` as decorator for class components.
+
+```js
+import { h, Component } from 'preact';
+import { withStore } from 'justorm/preact';
+
+@withStore({ user: ['isLogged'] })
+class App extends Component () {
+  render() {
+    const { isLogged, login, logout } = this.props.store.user;
+
+    const onClick = isLogged ? logout : login;
+    const text = isLogged ? 'logout' : 'login'
+
+    return <button onClick={onClick}>{text}</button>;
+  }
+});
+````
