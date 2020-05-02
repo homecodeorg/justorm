@@ -6,15 +6,14 @@ Simple store manager based on [Proxy](https://developer.mozilla.org/en/docs/Web/
 
 🌈 Welcome to write plugins for your favourite frameworks (see [preact plugin](src/preact/index.js)).
 
-## Create local store
+## Create local store ([demo](https://codesandbox.io/s/justorm-local-store-4tsn7)).
 
 _Better state._
 
 ```js
-import { h, Component } from 'preact';
 import { createStore } from 'justorm/preact';
 
-export class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.store = createStore(this, { count: 0 });
@@ -37,15 +36,14 @@ export class App extends Component {
 
 ```
 
-## Create shared store
+## Create shared store ([demo](https://codesandbox.io/s/justorm-shared-store-yb5jg)).
 
 Describe store and actions in one place.
 
 ```js
-// src/store/user.js
 import { createStore } from 'justorm/preact';
 
-export createStore('user', {
+createStore('user', {
   isLogged: false,
   login() {
     this.isLogged = true;
@@ -61,33 +59,31 @@ export createStore('user', {
 Specify store fields, that you want get updates from.
 
 ```js
-// src/components/App.jsx
-import { h } from 'preact';
 import { withStore } from 'justorm/preact';
 
-export withStore({ user: ['isLogged'] })(function App({ store }) {
-  const { isLogged, login, logout } = store.user;
+withStore({ user: ['isLogged'] })(
+  function App({ store }) {
+    const { isLogged, login, logout } = store.user;
 
-  const onClick = isLogged ? logout : login;
-  const text = isLogged ? 'logout' : 'login'
+    const onClick = isLogged ? logout : login;
+    const text = isLogged ? 'logout' : 'login'
 
-  return <button onClick={onClick}>{text}</button>;
-});
+    return <button onClick={onClick}>{text}</button>;
+  }
+);
 ```
 
 Use `withStore` as decorator for class components.
 
 ```js
-import { h, Component } from 'preact';
 import { withStore } from 'justorm/preact';
 
 @withStore({ user: ['isLogged'] })
-class App extends Component () {
-  render() {
-    const { isLogged, login, logout } = this.props.store.user;
-
+class App extends Component {
+  render({ store }) {
+    const { isLogged, login, logout } = store.user;
     const onClick = isLogged ? logout : login;
-    const text = isLogged ? 'logout' : 'login'
+    const text = isLogged ? 'logout' : 'login';
 
     return <button onClick={onClick}>{text}</button>;
   }
