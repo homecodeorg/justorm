@@ -109,6 +109,7 @@ class App extends Component {
 ````
 
 ## Vanilla JS
+[Demo](https://codesandbox.io/s/justorm-vanila-js-sb6dp).
 ```js
 import { createStore, connect, disconnect } from 'justorm';
 
