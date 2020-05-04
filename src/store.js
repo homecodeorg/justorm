@@ -52,14 +52,21 @@ export function createStore(src, obj) {
   return createSharedStore(src, obj);
 }
 
+function getFields(storeName, fields) {
+  if (Array.isArray(fields) && fields.length > 0) return fields;
+  return Object.keys(STORE[storeName]);
+}
+
 export function connect(storeName, fields, cb) {
-  fields.forEach(function (field) {
-    subscribe([storeName, field], cb);
-  });
+  if (typeof fields === 'function') cb = fields;
+
+  getFields(storeName, fields)
+    .forEach(field => subscribe([storeName, field], cb));
 }
 
 export function disconnect(storeName, fields, cb) {
-  fields.forEach(field => {
-    unsubscribe([storeName, field], cb);
-  });
+  if (typeof fields === 'function') cb = fields;
+
+  getFields(storeName, fields)
+    .forEach(field => unsubscribe([storeName, field], cb));
 }

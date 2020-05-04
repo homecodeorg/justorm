@@ -13,6 +13,7 @@ module.exports = (env, argv) => {
         libraryTarget: 'commonjs'
       },
       externals: {
+        'react': 'commonjs react',
         'preact': 'commonjs preact'
       },
       module: {
@@ -40,6 +41,7 @@ module.exports = (env, argv) => {
 
   return [
     createConfig('./src/index.js', 'index.js'),
+    createConfig('./src/react/index.js', 'react.js'),
     createConfig('./src/preact/index.js', 'preact.js')
   ]
 };

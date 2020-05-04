@@ -2,17 +2,41 @@
 
 Just Store Manager
 ====
-Simple store manager based on [Proxy](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
+Simple state/store manager based on [Proxy](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 
-🌈 Welcome to write plugins for your favourite frameworks (see [preact plugin](src/preact/index.js)).
+## API
 
-## Create local store ([demo](https://codesandbox.io/s/justorm-local-store-4tsn7)).
+* `createStore(name, object)` – creates new store with provided name
 
-_Better state._
+  Using with React or Preact you can pass `this` instead of name to create local component store.
+
+  See [Create local store](#create-local-store).
+
+* `withStore({ [storeName]: string[] })` – subscribe component to store.
+
+* `connect(storeName: string, fields: string[], callback: () => void)` – subscribe callback to store.
+
+* `disconnect(storeName: string, fields: string[], callback: () => void)` – unsubscribe callback to store.
+
+## Import
 
 ```js
-import { createStore } from 'justorm/preact';
+import { createStore, connect, disconnect } from 'justorm'; // for VanillaJS
+// or
+import { createStore, withStore } from 'justorm/react';    // for React
+// or
+import { createStore, withStore } from 'justorm/preact';  // for Preact
+```
 
+> NOTE: You don't need to unsubscribe from store when usign decorator `withStore`.
+>
+> `withStore` do it for you.
+
+## Create local store
+
+[Demo](https://codesandbox.io/s/justorm-local-store-4tsn7).
+
+```js
 class App extends Component {
   constructor(props) {
     super(props);
@@ -36,13 +60,11 @@ class App extends Component {
 
 ```
 
-## Create shared store ([demo](https://codesandbox.io/s/justorm-shared-store-yb5jg)).
+## Create shared store
 
-Describe store and actions in one place.
+Describe store and actions in one place. [Demo](https://codesandbox.io/s/justorm-shared-store-yb5jg).
 
 ```js
-import { createStore } from 'justorm/preact';
-
 createStore('user', {
   isLogged: false,
   login() {
@@ -59,8 +81,6 @@ createStore('user', {
 Specify store fields, that you want get updates from.
 
 ```js
-import { withStore } from 'justorm/preact';
-
 withStore({ user: ['isLogged'] })(
   function App({ store }) {
     const { isLogged, login, logout } = store.user;
@@ -76,8 +96,6 @@ withStore({ user: ['isLogged'] })(
 Use `withStore` as decorator for class components.
 
 ```js
-import { withStore } from 'justorm/preact';
-
 @withStore({ user: ['isLogged'] })
 class App extends Component {
   render({ store }) {
@@ -89,3 +107,40 @@ class App extends Component {
   }
 });
 ````
+
+## Vanilla JS
+```js
+import { createStore, connect, disconnect } from 'justorm';
+
+const myStore = createStore('my-store', {
+  isLogged: false;
+  user: null
+});
+
+function onLoggedChange() {
+  console.log(myStore.isLogged ? 'Welcome!' : 'See ya!');
+}
+function onAnyFieldChange() {
+  console.log('Some field changed:', myStore);
+}
+
+connect('my-store', ['isLogged'], onLoggedChange);
+connect('my-store', onAnyFieldChange);
+
+myStore.isLogged = true;
+// Welcome!
+// Some field changed: { isloggeg: true, user: null }
+console.log('-----------');
+
+myStore.user = 'Jess';
+// Some field changed: { isloggeg: true, user: 'Jess' }
+console.log('-----------');
+
+Object.assign(myStore, { isLogged: false, user: null });
+// See ya!
+// Some field changed: { isLogged: false, user: null }
+// Some field changed: { isLogged: false, user: null }
+
+disconnect('my-store', onLoggedChange);
+disconnect('my-store', onAnyFieldChange);
+```

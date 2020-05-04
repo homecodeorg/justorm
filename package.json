@@ -27,6 +27,7 @@
     "dev": "webpack --mode=development --watch"
   },
   "dependencies": {
+    "react": "^16.13.1",
     "webpack-dev-server": "^3.10.3"
   },
   "devDependencies": {
