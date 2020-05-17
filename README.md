@@ -1,36 +1,36 @@
 [![npm](https://img.shields.io/npm/dm/justorm?style=flat-square)](https://www.npmjs.com/package/justorm)
 
-Just Store Manager
-====
+# Just Store Manager
+
 Simple state/store manager based on [Proxy](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 
 ## API
 
-* `createStore(name, object)` – creates new store with provided name
+- `createStore(name, object)` – creates new store with provided name
 
-  Using with React or Preact you can pass `this` instead of name to create local component store.
+  > NOTE: Using with React or Preact you can pass `this` instead of name to create local component store.
+  >
+  > See [Create local store](#create-local-store).
 
-  See [Create local store](#create-local-store).
+- `withStore({ [storeName]: string[] })` – subscribe component to store.
 
-* `withStore({ [storeName]: string[] })` – subscribe component to store.
+- `connect(storeName: string, fields: string[], callback: () => void)` – subscribe callback to store.
 
-* `connect(storeName: string, fields: string[], callback: () => void)` – subscribe callback to store.
+- `disconnect(storeName: string, fields: string[], callback: () => void)` – unsubscribe callback to store.
 
-* `disconnect(storeName: string, fields: string[], callback: () => void)` – unsubscribe callback to store.
+* `store.originalObject` – returns original object (without Proxy wrapper)
 
 ## Import
 
 ```js
 import { createStore, connect, disconnect } from 'justorm'; // for VanillaJS
 // or
-import { createStore, withStore } from 'justorm/react';    // for React
+import { createStore, withStore } from 'justorm/react'; // for React
 // or
-import { createStore, withStore } from 'justorm/preact';  // for Preact
+import { createStore, withStore } from 'justorm/preact'; // for Preact
 ```
 
-> NOTE: You don't need to unsubscribe from store when usign decorator `withStore`.
->
-> `withStore` do it for you.
+> NOTE: You don't need to unsubscribe from store when usign decorator `withStore`. `withStore` do it for you.
 
 ## Create local store
 
@@ -45,7 +45,7 @@ class App extends Component {
 
   onClick = () => {
     this.store.count++;
-  }
+  };
 
   render() {
     const { count } = this.store;
@@ -53,11 +53,10 @@ class App extends Component {
     return [
       'Hi there!',
       count,
-      <button onClick={this.onClick}>click me</button>
+      <button onClick={this.onClick}>click me</button>,
     ];
   }
 }
-
 ```
 
 ## Create shared store
@@ -72,7 +71,7 @@ createStore('user', {
   },
   logout() {
     this.isLogged = false;
-  }
+  },
 });
 ```
 
@@ -81,16 +80,14 @@ createStore('user', {
 Specify store fields, that you want get updates from.
 
 ```js
-withStore({ user: ['isLogged'] })(
-  function App({ store }) {
-    const { isLogged, login, logout } = store.user;
+withStore({ user: ['isLogged'] })(function App({ store }) {
+  const { isLogged, login, logout } = store.user;
 
-    const onClick = isLogged ? logout : login;
-    const text = isLogged ? 'logout' : 'login'
+  const onClick = isLogged ? logout : login;
+  const text = isLogged ? 'logout' : 'login';
 
-    return <button onClick={onClick}>{text}</button>;
-  }
-);
+  return <button onClick={onClick}>{text}</button>;
+});
 ```
 
 Use `withStore` as decorator for class components.
@@ -106,10 +103,12 @@ class App extends Component {
     return <button onClick={onClick}>{text}</button>;
   }
 });
-````
+```
 
 ## Vanilla JS
+
 [Demo](https://codesandbox.io/s/justorm-vanila-js-sb6dp).
+
 ```js
 import { createStore, connect, disconnect } from 'justorm';
 
