@@ -5,6 +5,8 @@ export const STORE = {};
 function createProxy(obj, onChange, path = []) {
   var store = new Proxy(obj, {
     get: function(target, prop) {
+      if (prop === 'originalObject') return obj;
+
       var item = target[prop];
 
       if (typeof item === 'object' && item !== null) {
@@ -40,7 +42,7 @@ function createLocalStore(instance, obj) {
 function createSharedStore(storeName, obj) {
   function onChange(path) {
     call([storeName].concat(path));
-  };
+  }
 
   STORE[storeName] = createProxy(obj, onChange);
 
@@ -48,7 +50,7 @@ function createSharedStore(storeName, obj) {
 }
 
 export function createStore(src, obj) {
-  if (src.setState) return createLocalStore(src, obj)
+  if (src.setState) return createLocalStore(src, obj);
   return createSharedStore(src, obj);
 }
 
@@ -60,13 +62,15 @@ function getFields(storeName, fields) {
 export function connect(storeName, fields, cb) {
   if (typeof fields === 'function') cb = fields;
 
-  getFields(storeName, fields)
-    .forEach(field => subscribe([storeName, field], cb));
+  getFields(storeName, fields).forEach(field =>
+    subscribe([storeName, field], cb)
+  );
 }
 
 export function disconnect(storeName, fields, cb) {
   if (typeof fields === 'function') cb = fields;
 
-  getFields(storeName, fields)
-    .forEach(field => unsubscribe([storeName, field], cb));
+  getFields(storeName, fields).forEach(field =>
+    unsubscribe([storeName, field], cb)
+  );
 }
