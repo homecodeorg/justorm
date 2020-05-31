@@ -1,10 +1,10 @@
-import { subscribe, unsubscribe, call } from './listeners';
+import { subscribe, unsubscribe, call } from './tools/listeners';
 
 export const STORE = {};
 
 function createProxy(obj, onChange, path = []) {
   var store = new Proxy(obj, {
-    get: function(target, prop) {
+    get: function (target, prop) {
       if (prop === 'originalObject') return obj;
 
       var item = target[prop];
@@ -19,7 +19,7 @@ function createProxy(obj, onChange, path = []) {
 
       return item;
     },
-    set: function(target, prop, newValue) {
+    set: function (target, prop, newValue) {
       if (typeof target[prop] === 'function') {
         console.warn('Changing store actions is prohibited');
         return false;

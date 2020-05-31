@@ -1,4 +1,4 @@
-import { get, set } from './tools';
+import { get, set } from './object';
 
 const LISTENERS = {};
 
@@ -34,7 +34,9 @@ export function call(path) {
     const listeners = get(LISTENERS, path.slice(0, i));
 
     if (Array.isArray(listeners)) {
-      listeners.forEach(function (cb) { cb() });
+      listeners.forEach(function (cb) {
+        cb();
+      });
       return;
     }
   }
