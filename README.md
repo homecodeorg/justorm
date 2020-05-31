@@ -12,7 +12,19 @@ Simple state/store manager based on [Proxy](https://developer.mozilla.org/en/doc
   >
   > See [Create local store](#create-local-store).
 
-- `withStore({ [storeName]: string[] })` – subscribe component to store.
+- `withStore(config: string | object | array )` – subscribe component to store
+
+  - `withStore({ user: ['firstName'] })` – to field `firstName` of store `user`
+
+  - `withStore({ user: true })` – to all fields of store `user`
+
+  - `withStore('user')` – to all fields of stores `user`
+
+  - `withStore(['user', 'auth'])` - to all fields of stores `user` and `auth`
+
+  - `withStore(['user', { auth: ['isAuthorized'] }])`
+    - to all fields of stores `user`
+    - and field `isAuthorized` of store `auth`
 
 - `connect(storeName: string, fields: string[], callback: () => void)` – subscribe callback to store.
 
