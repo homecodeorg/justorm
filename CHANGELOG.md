@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/apostololeg/justorm/compare/v1.3.0...v1.4.0) (2020-05-31)
+
+
+### Features
+
+* Support string and array for config ([0d5b89f](https://github.com/apostololeg/justorm/commit/0d5b89fa7cb7d73baeb84ae887b9aa18d2e83c17))
+
 ## [1.3.0](https://github.com/apostololeg/justorm/compare/v1.2.1...v1.3.0) (2020-05-25)
 
 
