@@ -23,18 +23,10 @@ export default function connector(config, updater) {
   return {
     store,
     connect: function () {
-      entries.forEach(e => {
-        const name = e[0];
-        const fields = e[1];
-        connect(name, fields, updater);
-      });
+      entries.forEach(([name, fields]) => connect(name, fields, updater));
     },
     disconnect: function () {
-      entries.forEach(e => {
-        const name = e[0];
-        const fields = e[1];
-        disconnect(name, fields, updater);
-      });
+      entries.forEach(([name, fields]) => disconnect(name, fields, updater));
     },
   };
 }

@@ -2,16 +2,37 @@ import { subscribe, unsubscribe, call } from './tools/listeners';
 
 export const STORE = {};
 
+function isObject(obj) {
+  return typeof obj === 'object' && obj !== null;
+}
+
+function getOriginalObject(obj) {
+  if (Array.isArray(obj)) return obj.map(getOriginalObject);
+
+  if (isObject(obj)) {
+    return Object.entries(obj).reduce((acc, [field, val]) => {
+      if (val && val.originalObject) acc[field] = val.originalObject;
+      return acc;
+    }, obj);
+  }
+
+  return obj;
+}
+
 function createProxy(obj, onChange, path = []) {
   var store = new Proxy(obj, {
     get: function (target, prop) {
-      if (prop === 'originalObject') return obj;
+      if (prop === 'proxy') {
+        const itemProxy = target[prop];
 
-      var item = target[prop];
+        if (isObject(itemProxy)) {
+          return createProxy(itemProxy, onChange, path.concat([prop]));
+        }
 
-      if (typeof item === 'object' && item !== null) {
-        return createProxy(item, onChange, path.concat([prop]));
+        return target[prop];
       }
+
+      var item = obj[prop];
 
       if (typeof item === 'function') {
         return item.bind(store);

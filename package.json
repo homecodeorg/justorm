@@ -4,6 +4,12 @@
   "description": "Just store manager.",
   "author": "Oleg Apostol",
   "license": "ISC",
+  "scripts": {
+    "build": "webpack",
+    "build:dev": "webpack --mode=development",
+    "dev": "webpack --mode=development --watch",
+    "release": "standard-version"
+  },
   "bugs": {
     "url": "https://github.com/apostololeg/justorm/issues"
   },
@@ -22,13 +28,6 @@
   ],
   "main": "index.js",
   "sideEffects": false,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "build:dev": "webpack --mode=development",
-    "dev": "webpack --mode=development --watch",
-    "release": "standard-version"
-  },
   "dependencies": {
     "react": "^16.13.1",
     "webpack-dev-server": "^3.10.3"
