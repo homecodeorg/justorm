@@ -1,8 +1,17 @@
-import React, { Component } from 'react';
+import { h, Component } from 'preact';
 
-import connector from '../tools/connector';
+import connector from '../connector';
+import { createConnectedStore } from '../create';
 
-export { createStore, connect, disconnect } from '../store';
+export { createStore } from '../';
+
+function createUpdater(instance) {
+  return () => instance.setState({ _justorm: Date.now() });
+}
+
+export function createLocalStore(instance, obj) {
+  return createConnectedStore(obj, createUpdater(instance));
+}
 
 export function withStore(config = {}) {
   return function (WrappedComponent) {
@@ -11,7 +20,7 @@ export function withStore(config = {}) {
         super(props);
 
         this.state = { updated: null };
-        this.update = () => this.setState({ updated: Date.now() });
+        this.update = createUpdater(this);
         this.justormAPI = connector(config, this.update);
 
         this.justormAPI.connect();
@@ -25,12 +34,9 @@ export function withStore(config = {}) {
         return `withStore(${WrappedComponent.name})`;
       }
 
-      render() {
+      render(props) {
         const { store } = this.justormAPI;
-        return React.createElement(
-          WrappedComponent,
-          Object.assign({ store }, this.props)
-        );
+        return h(WrappedComponent, Object.assign(props, { store }));
       }
     };
   };
