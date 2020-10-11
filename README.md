@@ -37,9 +37,9 @@ Simple state/store manager based on [Proxy](https://developer.mozilla.org/en/doc
 ```js
 import { createStore, connect, disconnect } from 'justorm'; // for VanillaJS
 // or
-import { createStore, withStore } from 'justorm/react'; // for React
+import { createStore, createLocalStore, withStore } from 'justorm/react'; // for React
 // or
-import { createStore, withStore } from 'justorm/preact'; // for Preact
+import { createStore, createLocalStore, withStore } from 'justorm/preact'; // for Preact
 ```
 
 > NOTE: You don't need to unsubscribe from store when usign decorator `withStore`. `withStore` do it for you.
@@ -52,7 +52,7 @@ import { createStore, withStore } from 'justorm/preact'; // for Preact
 class App extends Component {
   constructor(props) {
     super(props);
-    this.store = createStore(this, { count: 0 });
+    this.store = createLocalStore(this, { count: 0 });
   }
 
   onClick = () => {
