@@ -39,6 +39,7 @@
   "devDependencies": {
     "compareq": "^1.1.3",
     "preact": "^10.4.0",
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "standard-version": "^9.0.0"
   }
 }
