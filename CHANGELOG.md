@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/apostololeg/justorm/compare/v2.0.0...v2.0.1) (2020-10-11)
+
+
+### Bug Fixes
+
+* createLocalStore ([ce90baa](https://github.com/apostololeg/justorm/commit/ce90baa67baf5a81e6cc1c99c6b84b13e46deda8))
+
 ## [2.0.0](https://github.com/apostololeg/justorm/compare/v1.4.0...v2.0.0) (2020-10-11)
 
 ## [1.4.0](https://github.com/apostololeg/justorm/compare/v1.3.0...v1.4.0) (2020-05-31)
