@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/apostololeg/justorm/compare/v2.0.1...v2.0.2) (2020-10-24)
+
+
+### Bug Fixes
+
+* Proxy:set() – do not return false in strict mode ([e019645](https://github.com/apostololeg/justorm/commit/e019645820cc4a47024596e1982b3f19b96e1ca9))
+
 ### [2.0.1](https://github.com/apostololeg/justorm/compare/v2.0.0...v2.0.1) (2020-10-11)
 
 
