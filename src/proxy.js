@@ -53,7 +53,7 @@ export function createProxy({ obj, path = [], disconnect }) {
         return false;
       }
 
-      if (compare(target[prop], value)) return false;
+      if (compare(target[prop], value)) return true;
 
       const fullPath = getFullPath(path, prop);
 
