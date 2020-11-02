@@ -13,14 +13,13 @@ export function createStore(storeName, obj) {
 
 export function createConnectedStore(obj, cb) {
   const storeName = nanoid();
+  const { connect, disconnect } = connector(storeName, cb);
 
   STORE[storeName] = createProxy({
     obj,
     path: [storeName],
     disconnect,
   });
-
-  const { connect, disconnect } = connector(storeName, cb);
 
   connect();
   return STORE[storeName];
