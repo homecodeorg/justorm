@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.4](https://github.com/apostololeg/justorm/compare/v2.0.3...v2.0.4) (2020-11-02)
+
+
+### Bug Fixes
+
+* createConnectedStore – define before use ([741a0eb](https://github.com/apostololeg/justorm/commit/741a0ebbeefc7099fbaf85d2b4b89d8671d6531b))
+
 ### [2.0.3](https://github.com/apostololeg/justorm/compare/v2.0.2...v2.0.3) (2020-10-24)
 
 ### [2.0.2](https://github.com/apostololeg/justorm/compare/v2.0.1...v2.0.2) (2020-10-24)
