@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.5](https://github.com/apostololeg/justorm/compare/v2.0.4...v2.0.5) (2021-06-10)
+
+
+### Bug Fixes
+
+* callBatchUpdate(), back-compability for createStore() ([fc33822](https://github.com/apostololeg/justorm/commit/fc33822bfbe1682dc2425956b4cc6b263f2b5039))
+
 ### [2.0.4](https://github.com/apostololeg/justorm/compare/v2.0.3...v2.0.4) (2020-11-02)
 
 
