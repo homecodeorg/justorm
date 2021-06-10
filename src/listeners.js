@@ -43,19 +43,22 @@ const Callbacks = {
   },
 };
 
-export function call(path, id) {
+function fireCallback(cb) {
+  if (!cb || Callbacks.has(cb)) return
+
+  Callbacks.add(cb);
+  cb();
+}
+
+export function call(path, callId) {
   const items = path.split('.');
 
-  Callbacks.init(id);
+  Callbacks.init(callId);
 
   for (let i = 1; i <= items.length; i++) {
     const key = items.slice(0, i).join('.');
     const listeners = LISTENERS[key];
-    const cb = Array.isArray(listeners) && listeners[0];
 
-    if (cb && !Callbacks.has(cb)) {
-      Callbacks.add(cb);
-      cb();
-    }
+    if (listeners) listeners.forEach(fireCallback);
   }
 }

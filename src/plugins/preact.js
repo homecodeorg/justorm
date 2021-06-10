@@ -3,13 +3,14 @@ import { h, Component } from 'preact';
 import connector from '../connector';
 import { createConnectedStore } from '../create';
 
-export { createStore } from '../';
+import { createStore as _createStore } from '../';
 
 function createUpdater(instance) {
   return () => instance.setState({ _justorm: Date.now() });
 }
 
-export function createLocalStore(instance, obj) {
+export function createStore(instance, obj) {
+  if (typeof instance === 'string') return _createStore(instance, obj);
   return createConnectedStore(obj, createUpdater(instance));
 }
 

@@ -6,7 +6,8 @@
   "license": "ISC",
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "dev": "yarn build -- --watch",
+    "build:dev": "DEVELOPMENT=true yarn build",
+    "dev": "yarn build --watch",
     "release": "standard-version"
   },
   "bugs": {

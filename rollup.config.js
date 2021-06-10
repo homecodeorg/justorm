@@ -3,7 +3,7 @@ import buble from 'rollup-plugin-buble';
 import { uglify } from 'rollup-plugin-uglify';
 import optimizeJs from 'rollup-plugin-optimize-js';
 
-const isProduction = !process.env.ROLLUP_WATCH;
+const isProduction = !process.env.ROLLUP_WATCH && !process.env.DEVELOPMENT;
 const plugins = [nodeResolve()];
 
 if (isProduction) {

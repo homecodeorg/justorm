@@ -5,7 +5,7 @@ import STORE from './store';
 import { call } from './listeners';
 import connector, { getFullPath } from './connector';
 
-let queue = [];
+let QUEUE = [];
 let queueTimeout;
 
 function isObject(obj) {
@@ -17,15 +17,16 @@ function callBatchUpdate() {
 
   queueTimeout = setTimeout(() => {
     const id = nanoid();
+    const queue = QUEUE.slice(0);
 
-    queue.forEach(fullPath => call(fullPath, id));
-    queue = [];
+    QUEUE = [];
     queueTimeout = null;
+    queue.forEach(fullPath => call(fullPath, id));
   }, 0);
 }
 
 function batchedUpdate(fullPath, onChange) {
-  queue.push(fullPath);
+  QUEUE.push(fullPath);
   callBatchUpdate();
 }
 
