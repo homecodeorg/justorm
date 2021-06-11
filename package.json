@@ -8,7 +8,10 @@
     "build": "rollup -c rollup.config.js",
     "build:dev": "DEVELOPMENT=true yarn build",
     "dev": "yarn build --watch",
-    "release": "standard-version"
+    "release": "standard-version",
+    "release:patch": "standard-version --release-as patch --no-verify",
+    "release:minor": "standard-version --release-as minor --no-verify",
+    "release:major": "standard-version --release-as major --no-verify"
   },
   "bugs": {
     "url": "https://github.com/apostololeg/justorm/issues"
