@@ -12,8 +12,11 @@ if (isProduction) {
     uglify({
       compress: {
         negate_iife: false, // not required, similar optimization
-        // omitted for brevity
+        passes:2
       },
+      output: {
+        beautify: false,
+      }
     }),
     optimizeJs() // occurs after uglify
   );
