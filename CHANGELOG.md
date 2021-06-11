@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/apostololeg/justorm/compare/v2.0.6...v2.1.0) (2021-06-11)
+
+
+### Features
+
+* rollup.config - uglify ([0a2efb0](https://github.com/apostololeg/justorm/commit/0a2efb06b2338f051cf8e86ad74ad217c327b88c))
+
 ### [2.0.6](https://github.com/apostololeg/justorm/compare/v2.0.5...v2.0.6) (2021-06-11)
 
 
