@@ -14,12 +14,12 @@
     "release:major": "standard-version --release-as major --no-verify"
   },
   "bugs": {
-    "url": "https://github.com/apostololeg/justorm/issues"
+    "url": "https://github.com/foreverido/justorm/issues"
   },
-  "homepage": "https://github.com/apostololeg/justorm#readme",
+  "homepage": "https://github.com/foreverido/justorm#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apostololeg/justorm.git"
+    "url": "git+https://github.com/foreverido/justorm.git"
   },
   "keywords": [
     "store",
@@ -45,5 +45,8 @@
     "preact": "^10.4.0",
     "react": "^16.13.1",
     "standard-version": "^9.0.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
