@@ -1,9 +1,8 @@
 import compare from 'compareq';
-import nanoid from 'nanoid-esm';
+const nanoid = require( 'nanoid-esm/non-secure');
 
-import STORE from './store';
 import { call } from './listeners';
-import connector, { getFullPath } from './connector';
+import { getFullPath } from './connector';
 
 let QUEUE = [];
 let queueTimeout;

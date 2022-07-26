@@ -1,4 +1,4 @@
-import nanoid from 'nanoid-esm';
+const nanoid = require('nanoid-esm/non-secure');
 
 import { createProxy } from './proxy';
 import connector from './connector';
