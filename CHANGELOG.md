@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/foreverido/justorm/compare/v2.1.2...v2.1.3) (2022-07-26)
+
+
+### Bug Fixes
+
+* SSR: nanoid-esm => nanoid-esm/non-secure ([9657d83](https://github.com/foreverido/justorm/commit/9657d83013afe72bbbadbfc21b204ea6d06b61e8))
+
 ### [2.1.2](https://github.com/foreverido/justorm/compare/v2.1.1...v2.1.2) (2021-12-09)
 
 ### [2.1.1](https://github.com/foreverido/justorm/compare/v2.1.0...v2.1.1) (2021-12-08)
