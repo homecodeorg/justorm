@@ -1,6 +1,12 @@
-const LISTENERS = {};
+const LISTENERS: Record<string, Function[]> = {};
 
-export function subscribe(path, cb) {
+/**
+ * Subscribes a callback function to a path.
+ *
+ * @param path - The path.
+ * @param cb - The callback function to subscribe.
+ */
+export function subscribe(path: string, cb: Function): void {
   const currListeners = LISTENERS[path];
 
   if (!currListeners) {
@@ -11,7 +17,13 @@ export function subscribe(path, cb) {
   if (currListeners.indexOf(cb) === -1) currListeners.push(cb);
 }
 
-export function unsubscribe(path, cb) {
+/**
+ * Unsubscribes a callback function from a path.
+ *
+ * @param path - The path.
+ * @param cb - The callback function to unsubscribe.
+ */
+export function unsubscribe(path: string, cb: Function): void {
   const currListeners = LISTENERS[path];
 
   if (!currListeners) return;
@@ -28,29 +40,35 @@ export function unsubscribe(path, cb) {
 }
 
 const Callbacks = {
-  stack: [],
-  init(id) {
+  stack: [] as Function[],
+  id: null as null | string,
+  init(id: string) {
     if (id === this.id) return;
     this.id = id;
     this.stack = [];
   },
-  add(cb) {
+  add(cb: Function) {
     if (this.has(cb)) return;
     this.stack.push(cb);
   },
-  has(cb) {
+  has(cb: Function) {
     return this.stack.indexOf(cb) > -1;
   },
 };
 
-function fireCallback(cb) {
-  if (!cb || Callbacks.has(cb)) return
+/**
+ * Fires a callback function if it's not in the Callbacks stack.
+ *
+ * @param cb - The callback function to fire.
+ */
+function fireCallback(cb: Function) {
+  if (!cb || Callbacks.has(cb)) return;
 
   Callbacks.add(cb);
   cb();
 }
 
-export function call(path, callId) {
+export function call(path: string, callId: string) {
   const items = path.split('.');
 
   Callbacks.init(callId);

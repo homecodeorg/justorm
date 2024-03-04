@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "baseUrl": "./",
+    "rootDir": "./",
+    "declaration": true,
+    "declarationDir": "dist/esm/types"
+  },
+  "plugins": ["typescript-eslint-language-service"],
+  "exclude": ["rollup.config.js"]
+}
