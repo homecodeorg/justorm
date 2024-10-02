@@ -1,9 +1,13 @@
-import { nanoid } from 'nanoid/non-secure';
+import { nanoid } from 'nanoid';
 
 import { createProxy } from './proxy';
 import type { ProxyStore } from './proxy';
 import connector from './connector';
 import STORE from './store';
+
+export type Store = {
+  [key: string]: any;
+};
 
 export function createStore<T extends object>(
   storeName: string,

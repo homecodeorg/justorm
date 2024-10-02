@@ -1,6 +1,7 @@
 import connector, { Config } from './connector';
 
 export { createStore } from './create';
+export { createClassStore } from './createClassStore';
 
 /**
  * Creates a connection to a store or stores specified in the configuration
