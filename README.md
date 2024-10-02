@@ -75,7 +75,6 @@ class App extends Component {
 
 Describe store and actions in one place. [Demo](https://codesandbox.io/s/justorm-shared-store-yb5jg).
 
-```js
 createStore('user', {
   isLogged: false,
   login() {
@@ -87,13 +86,50 @@ createStore('user', {
 });
 ```
 
-## Subscribe to store
+## Create class-based store
 
-Specify store fields, that you want get updates from.
+You can also create a store using a class definition with the `createClassStore` function. This approach provides better TypeScript support and allows for more complex store structures.
 
-```js
+```typescript
+import { createClassStore } from 'justorm';
+
+class UserStore {
+  isLogged: boolean = false;
+
+  login() {
+    this.isLogged = true;
+  }
+
+  logout() {
+    this.isLogged = false;
+  }
+}
+
+const userStore = createClassStore('user', UserStore);
+
+// Using the class-based store with withStore
 withStore({ user: ['isLogged'] })(function App({ store }) {
   const { isLogged, login, logout } = store.user;
+
+  const onClick = isLogged ? logout : login;
+  const text = isLogged ? 'logout' : 'login';
+
+  return <button onClick={onClick}>{text}</button>;
+});
+
+// You can also use withStore as a decorator for class components
+@withStore({ user: ['isLogged'] })
+class AppClass extends Component {
+  render({ store }) {
+    const { isLogged, login, logout } = store.user;
+    const onClick = isLogged ? logout : login;
+    const text = isLogged ? 'logout' : 'login';
+
+    return <button onClick={onClick}>{text}</button>;
+  }
+}
+
+// Specify store fields that you want to get updates from
 
   const onClick = isLogged ? logout : login;
   const text = isLogged ? 'logout' : 'login';
