@@ -5,19 +5,22 @@ import { createConnectedStore } from '../create';
 
 import { createStore as _createStore } from '../';
 
-function createUpdater(instance) {
+function createUpdater(instance: any) {
   return () => instance.setState({ _justorm: Date.now() });
 }
 
-export function createStore(instance, obj) {
+export function createStore(instance: any, obj: any) {
   if (typeof instance === 'string') return _createStore(instance, obj);
   return createConnectedStore(obj, createUpdater(instance));
 }
 
-export function withStore(config = {}) {
-  return function (WrappedComponent) {
+export function withStore(config: any = {}) {
+  return function (WrappedComponent: any) {
     return class extends Component {
-      constructor(props) {
+      update: any;
+      justormAPI: any;
+
+      constructor(props: any) {
         super(props);
 
         this.state = { updated: null };
@@ -35,7 +38,7 @@ export function withStore(config = {}) {
         return `withStore(${WrappedComponent.name})`;
       }
 
-      render(props) {
+      render(props: any) {
         const { store } = this.justormAPI;
         return h(WrappedComponent, Object.assign(props, { store }));
       }

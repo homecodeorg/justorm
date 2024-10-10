@@ -7,14 +7,19 @@ const LISTENERS: Record<string, Function[]> = {};
  * @param cb - The callback function to subscribe.
  */
 export function subscribe(path: string, cb: Function): void {
+  // console.log('Subscribing to path:', path);
   const currListeners = LISTENERS[path];
 
   if (!currListeners) {
     LISTENERS[path] = [cb];
+    // console.log('New listener added:', LISTENERS[path]);
     return;
   }
 
-  if (currListeners.indexOf(cb) === -1) currListeners.push(cb);
+  if (currListeners.indexOf(cb) === -1) {
+    currListeners.push(cb);
+    // console.log('Listener added to existing path:', LISTENERS[path]);
+  }
 }
 
 /**
@@ -69,14 +74,19 @@ function fireCallback(cb: Function) {
 }
 
 export function call(path: string, callId: string) {
+  // console.log('Calling listeners for path:', path);
   const items = path.split('.');
 
   Callbacks.init(callId);
 
   for (let i = 1; i <= items.length; i++) {
     const key = items.slice(0, i).join('.');
+    // console.log('LISTENERS', LISTENERS);
+
     const listeners = LISTENERS[key];
+    // console.log('Listeners for key:', key, listeners);
 
     if (listeners) listeners.forEach(fireCallback);
   }
+  // console.log('Call complete for path:', path);
 }

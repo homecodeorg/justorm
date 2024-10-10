@@ -32,10 +32,11 @@ export function connect(
   fields: string[] | Function,
   cb?: Function
 ) {
-  console.log('connect', storeName, fields, cb);
+  // console.log('connect', storeName, fields, cb);
 
   if (typeof fields === 'function') {
     const store = STORE[storeName];
+    // console.log('Store found:', store);
 
     if (!store) {
       console.warn(`Store ${storeName} does not exist`);
@@ -44,8 +45,9 @@ export function connect(
 
     cb = fields;
     fields = Object.keys(store.toJS());
+    // console.log('Fields:', fields);
 
-    if (!fields?.length) {
+    if (!fields || fields.length === 0) {
       console.warn(`Store ${storeName} has no fields`);
       return;
     }
@@ -55,9 +57,11 @@ export function connect(
     throw new Error('Callback function is required');
   }
 
+  // console.log('Subscribing to fields:', fields);
   fields.forEach(field =>
     subscribe(getFullPath(storeName, field), cb as Function)
   );
+  // console.log('Subscription complete');
 }
 
 /**
@@ -130,7 +134,7 @@ export default function connector(
 ): StoreConnector {
   const entries = getEntries(config);
 
-  console.log('connector() entries -', entries);
+  // console.log('connector() entries -', entries);
 
   const store = entries.reduce(function (acc, s) {
     const name = s[0];
@@ -140,11 +144,9 @@ export default function connector(
   return {
     store,
     connect: function () {
-      // @ts-ignore
       entries.forEach(([name, fields]) => connect(name, fields, cb));
     },
     disconnect: function () {
-      // @ts-ignore
       entries.forEach(([name, fields]) => disconnect(name, fields, cb));
     },
   };

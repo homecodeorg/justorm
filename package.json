@@ -10,6 +10,7 @@
     "dev": "yarn build --watch",
     "tests": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js -c=jest.config.js --no-cache",
     "release": "standard-version",
+    "release:as": "standard-version --release-as",
     "release:patch": "standard-version --release-as patch --no-verify",
     "release:minor": "standard-version --release-as minor --no-verify",
     "release:major": "standard-version --release-as major --no-verify"
@@ -65,5 +66,6 @@
   },
   "directories": {
     "test": "test"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -1,4 +1,4 @@
-import { createClassStore } from '../src/createClassStore';
+import { createClassStore } from '../src/createClassStore'; // TODO: /src
 
 describe('createClassStore', () => {
   it('creates a store from a class definition', () => {
