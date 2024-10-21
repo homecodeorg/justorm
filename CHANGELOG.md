@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-11](https://github.com/foreverido/justorm/compare/v2.1.3...v3.0.0-beta-11) (2024-10-21)
+
+
+### Features
+
+* Typings & Tests ([15bfbeb](https://github.com/foreverido/justorm/commit/15bfbeba2fe10d07f307f1444e7a9de94da716fe))
+
+
+### Bug Fixes
+
+* createClassStore() and tests ([5eb0914](https://github.com/foreverido/justorm/commit/5eb09146b897689fa821e1084b4289f143cbc61c))
+
 ### [2.1.4](https://github.com/foreverido/justorm/compare/v2.1.3...v2.1.4) (2024-02-29)
 
 ### [2.1.3](https://github.com/foreverido/justorm/compare/v2.1.2...v2.1.3) (2022-07-26)
