@@ -1,4 +1,5 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { useState, useEffect, useCallback, useMemo } from 'preact/hooks';
 
 import connector from '../connector';
 import { createConnectedStore } from '../create';
@@ -16,32 +17,18 @@ export function createStore(instance: any, obj: any) {
 
 export function withStore(config: any = {}) {
   return function (WrappedComponent: any) {
-    return class extends Component {
-      update: any;
-      justormAPI: any;
+    return function WithStoreComponent(props: any) {
+      const [, setUpdated] = useState(null);
+      const update = useCallback((val: any) => setUpdated(val), []);
+      const justormAPI = useMemo(() => connector(config, update), []);
 
-      constructor(props: any) {
-        super(props);
+      useEffect(() => {
+        justormAPI.connect();
+        return () => justormAPI.disconnect();
+      }, [justormAPI]);
 
-        this.state = { updated: null };
-        this.update = createUpdater(this);
-        this.justormAPI = connector(config, this.update);
-
-        this.justormAPI.connect();
-      }
-
-      componentWillUnmount() {
-        this.justormAPI.disconnect();
-      }
-
-      toString() {
-        return `withStore(${WrappedComponent.name})`;
-      }
-
-      render(props: any) {
-        const { store } = this.justormAPI;
-        return h(WrappedComponent, Object.assign(props, { store }));
-      }
+      const { store } = justormAPI;
+      return h(WrappedComponent, Object.assign(props, { store }));
     };
   };
 }

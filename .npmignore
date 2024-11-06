@@ -1,8 +1,8 @@
-src
-.babelrc
+/src/
+tests/
+.prettierrc
+*.config.* 
 webpack.config.js
 node_modules/
 yarn-error.log
-*.sublime-*
-index.js.*
-preact.js.*
+index.html

@@ -43,28 +43,30 @@ export default [
     external: ['compareq'],
     plugins,
   },
-  // {
-  //   input: 'src/plugins/react.ts',
-  //   output: {
-  //     // file: 'dist/react.js',
-
-  //     dir: 'dist/esm',
-  //     format: 'esm',
-  //     // name: 'justorm',
-  //     sourcemap: !isProduction,
-  //     preserveModules: true,
-  //   },
-  //   external: ['compareq', 'react'],
-  //   plugins,
-  // },
-  // {
-  //   input: 'src/plugins/preact.ts',
-  //   output: {
-  //     file: 'preact.js',
-  //     format: 'esm',
-  //     name: 'justorm',
-  //   },
-  //   external: ['compareq', 'preact'],
-  //   plugins,
-  // },
+  {
+    input: 'src/plugins/react.ts',
+    output: {
+      // file: 'dist/react.js',
+      dir: 'dist/esm',
+      format: 'esm',
+      // name: 'justorm',
+      sourcemap: !isProduction,
+      preserveModules: true,
+    },
+    external: ['compareq', 'react'],
+    plugins,
+  },
+  {
+    input: 'src/plugins/preact.ts',
+    output: {
+      // file: 'dist/preact.js',
+      dir: 'dist/esm',
+      format: 'esm',
+      // name: 'justorm',
+      sourcemap: !isProduction,
+      preserveModules: true,
+    },
+    external: ['compareq', 'preact'],
+    plugins,
+  },
 ];
