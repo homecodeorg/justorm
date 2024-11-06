@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-13](https://github.com/foreverido/justorm/compare/v3.0.0-beta-12...v3.0.0-beta-13) (2024-11-06)
+
+
+### Bug Fixes
+
+* plugins/preact ([00aedb5](https://github.com/foreverido/justorm/commit/00aedb52a2ab4bb5566186a4f83a0e5400a739b6))
+
 ## [3.0.0-beta-12](https://github.com/foreverido/justorm/compare/v3.0.0-beta-11...v3.0.0-beta-12) (2024-11-06)
 
 ## [3.0.0-beta-11](https://github.com/foreverido/justorm/compare/v2.1.3...v3.0.0-beta-11) (2024-10-21)
