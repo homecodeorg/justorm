@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-20](https://github.com/foreverido/justorm/compare/v3.0.0-beta-19...v3.0.0-beta-20) (2025-02-08)
+
+
+### Bug Fixes
+
+* Proxy.set - Array.length ([9edc5c5](https://github.com/foreverido/justorm/commit/9edc5c578b9262fdee21e64625468853e66f7ce0))
+
 ## [3.0.0-beta-19](https://github.com/foreverido/justorm/compare/v3.0.0-beta-18...v3.0.0-beta-19) (2025-02-08)
 
 
