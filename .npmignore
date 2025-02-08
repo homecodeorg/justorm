@@ -6,3 +6,4 @@ webpack.config.js
 node_modules/
 yarn-error.log
 index.html
+tests/

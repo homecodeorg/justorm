@@ -13,5 +13,5 @@
     "declarationDir": "dist/esm/types"
   },
   "plugins": ["typescript-eslint-language-service"],
-  "exclude": ["rollup.config.js"]
+  "exclude": ["rollup.config.js", "tests"]
 }
