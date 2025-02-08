@@ -31,9 +31,9 @@
     "preact",
     "react"
   ],
-  "main": "dist/cjs",
-  "module": "dist/esm/src",
-  "types": "dist/esm/src/index.d.ts",
+  "main": "dist/esm",
+  "module": "dist/esm",
+  "types": "dist/esm/index.d.ts",
   "type": "module",
   "dependencies": {
     "@rollup/plugin-node-resolve": "^9.0.0",
@@ -68,16 +68,16 @@
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "exports": {
     ".": {
-      "import": "./dist/esm/src/index.js",
-      "default": "./dist/esm/src/index.js"
+      "import": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
     },
     "./react": {
-      "import": "./dist/esm/src/plugins/react.js",
-      "default": "./dist/esm/src/plugins/react.js"
+      "import": "./dist/esm/plugins/react.js",
+      "default": "./dist/esm/plugins/react.js"
     },
     "./preact": {
-      "import": "./dist/esm/src/plugins/preact.js",
-      "default": "./dist/esm/src/plugins/preact.js"
+      "import": "./dist/esm/plugins/preact.js",
+      "default": "./dist/esm/plugins/preact.js"
     }
   }
 }
