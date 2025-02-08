@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-18](https://github.com/foreverido/justorm/compare/v3.0.0-beta-17...v3.0.0-beta-18) (2025-02-08)
+
 ## [3.0.0-beta-17](https://github.com/foreverido/justorm/compare/v3.0.0-beta-16...v3.0.0-beta-17) (2025-02-08)
 
 
