@@ -70,19 +70,16 @@
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/cjs/index.js"
+      "import": "./dist/esm/src/index.js",
+      "default": "./dist/esm/src/index.js"
     },
     "./react": {
-      "import": "./dist/esm/src/plugins/react/index.js",
-      "require": "./dist/cjs/src/plugins/react/index.js",
-      "default": "./dist/cjs/src/plugins/react/index.js"
+      "import": "./dist/esm/src/plugins/react.js",
+      "default": "./dist/esm/src/plugins/react.js"
     },
     "./preact": {
-      "import": "./dist/esm/src/plugins/preact/index.js",
-      "require": "./dist/cjs/src/plugins/preact/index.js",
-      "default": "./dist/cjs/src/plugins/preact/index.js"
+      "import": "./dist/esm/src/plugins/preact.js",
+      "default": "./dist/esm/src/plugins/preact.js"
     }
   }
 }
