@@ -12,6 +12,8 @@ describe('justorm', () => {
     it('initializes a store with a string field correctly', () => {
       const store = createStore('store', { a: 'test' });
       expect(store.a).toEqual('test');
+
+      store.a = 'test';
     });
 
     it('initializes a store with an array field correctly', () => {

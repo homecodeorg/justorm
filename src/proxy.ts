@@ -136,21 +136,15 @@ export function createProxy<T>({
     set: function (target: any, prop: string, value: any) {
       const prevValue = target[prop];
 
-      if (isReflected(target)) debugger;
+      // if (isReflected(target)) debugger;
 
       if (typeof prevValue === 'function') {
         console.error('Changing a store actions is prohibited');
         return false;
       }
 
-      // Always allow array length updates
-      if (Array.isArray(target) && prop === 'length') {
-        target[prop] = value;
-        return true;
-      }
-
       // if the value is the same - do nothing
-      if (compare(prevValue, value)) return false;
+      if (compare(prevValue, value)) return true;
 
       const fullPath = getFullPath(path, prop);
 
