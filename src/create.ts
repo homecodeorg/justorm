@@ -1,9 +1,8 @@
-import { nanoid } from 'nanoid';
-
 import { createProxy } from './proxy';
 import type { ProxyStore } from './proxy';
 import connector from './connector';
 import STORE from './store';
+import { generateId } from './id';
 
 export type Store = {
   [key: string]: any;
@@ -28,7 +27,7 @@ export function createConnectedStore<T extends object>(
   obj: T,
   cb: Function
 ): ProxyStore<T> {
-  const storeName = nanoid();
+  const storeName = generateId();
   const { connect, disconnect } = connector(storeName, cb);
 
   STORE[storeName] = createProxy({

@@ -9,7 +9,6 @@ const jestConfig = {
     '^.+.tsx?$': ['ts-jest', { useESM: true }], // ts-jest configuration
   },
   extensionsToTreatAsEsm: ['.ts', '.tsx'], // Treat TypeScript files as ESM
-  transformIgnorePatterns: ['/node_modules/(?!nanoid).+.js$'],
   silent: false,
 };
 

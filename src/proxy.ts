@@ -1,9 +1,8 @@
 import compare from 'compareq';
-import { nanoid } from 'nanoid/non-secure';
 
 import { call } from './listeners';
 import { getFullPath } from './connector';
-
+import { generateId } from './id';
 function isObject(obj: any) {
   return typeof obj === 'object' && obj !== null;
 }
@@ -19,7 +18,7 @@ function callBatchUpdate() {
   if (queueTimeout) return;
 
   queueTimeout = setTimeout(() => {
-    const id = nanoid();
+    const id = generateId();
     const queue = QUEUE.slice(0); // copy the queue
 
     QUEUE = [];
