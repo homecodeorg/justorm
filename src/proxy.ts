@@ -3,6 +3,7 @@ import compare from 'compareq';
 import { call } from './listeners';
 import { getFullPath } from './connector';
 import { generateId } from './id';
+
 function isObject(obj: any) {
   return typeof obj === 'object' && obj !== null;
 }
@@ -142,13 +143,19 @@ export function createProxy<T>({
         return false;
       }
 
+      // Always allow array length updates
+      if (Array.isArray(target) && prop === 'length') {
+        target[prop] = value;
+        return true;
+      }
+
       // if the value is the same - do nothing
       if (compare(prevValue, value)) return false;
 
       const fullPath = getFullPath(path, prop);
 
       batchedUpdate(fullPath);
-      target[prop as string] = value;
+      target[prop] = value;
 
       return true;
     },
