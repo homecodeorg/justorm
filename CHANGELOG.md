@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-17](https://github.com/foreverido/justorm/compare/v3.0.0-beta-16...v3.0.0-beta-17) (2025-02-08)
+
+
+### Bug Fixes
+
+* simplify ID generation ([4d0127c](https://github.com/foreverido/justorm/commit/4d0127c19fa2fac0d6f72023cd8c657a6297a161))
+
 ## [3.0.0-beta-16](https://github.com/foreverido/justorm/compare/v3.0.0-beta-15...v3.0.0-beta-16) (2025-02-08)
 
 ## [3.0.0-beta-15](https://github.com/foreverido/justorm/compare/v3.0.0-beta-14...v3.0.0-beta-15) (2025-02-08)
