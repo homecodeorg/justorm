@@ -71,15 +71,18 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
     },
     "./react": {
       "import": "./dist/esm/src/plugins/react/index.js",
-      "require": "./dist/cjs/src/plugins/react/index.js"
+      "require": "./dist/cjs/src/plugins/react/index.js",
+      "default": "./dist/cjs/src/plugins/react/index.js"
     },
     "./preact": {
       "import": "./dist/esm/src/plugins/preact/index.js",
-      "require": "./dist/cjs/src/plugins/preact/index.js"
+      "require": "./dist/cjs/src/plugins/preact/index.js",
+      "default": "./dist/cjs/src/plugins/preact/index.js"
     }
   }
 }
