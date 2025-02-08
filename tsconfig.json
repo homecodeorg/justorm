@@ -15,5 +15,6 @@
     }
   },
   "include": ["src"],
-  "exclude": ["rollup.config.ts", "tests"]
+  "exclude": ["rollup.config.ts", "tests"],
+  "plugins": ["typescript-eslint-language-service"]
 }
