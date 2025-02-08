@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-19](https://github.com/foreverido/justorm/compare/v3.0.0-beta-18...v3.0.0-beta-19) (2025-02-08)
+
+
+### Bug Fixes
+
+* rollback typescript plugin typescript-eslint-language-service ([e5beac4](https://github.com/foreverido/justorm/commit/e5beac455ea07b33618ce5e21df726baec01f497))
+
 ## [3.0.0-beta-18](https://github.com/foreverido/justorm/compare/v3.0.0-beta-17...v3.0.0-beta-18) (2025-02-08)
 
 ## [3.0.0-beta-17](https://github.com/foreverido/justorm/compare/v3.0.0-beta-16...v3.0.0-beta-17) (2025-02-08)
