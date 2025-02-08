@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-21](https://github.com/foreverido/justorm/compare/v3.0.0-beta-20...v3.0.0-beta-21) (2025-02-08)
+
+
+### Bug Fixes
+
+* proxy.set trap - always return 'true' ([6972d54](https://github.com/foreverido/justorm/commit/6972d543afff272cc33ba457519d37cecfadfb41))
+
 ## [3.0.0-beta-20](https://github.com/foreverido/justorm/compare/v3.0.0-beta-19...v3.0.0-beta-20) (2025-02-08)
 
 
