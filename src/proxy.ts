@@ -144,12 +144,12 @@ export function createProxy<T>({
       }
 
       // if the value is the same - do nothing
-      if (compare(prevValue, value)) return true;
+      if (!compare(prevValue, value)) {
+        const fullPath = getFullPath(path, prop);
 
-      const fullPath = getFullPath(path, prop);
-
-      batchedUpdate(fullPath);
-      target[prop] = value;
+        batchedUpdate(fullPath);
+        target[prop] = value;
+      }
 
       return true;
     },
