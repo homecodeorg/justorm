@@ -52,7 +52,11 @@ export function withStore(config: Config = {}) {
  * @returns
  */
 export function useStore(config: Config = {}) {
-  const api = useMemo(() => connector(config, () => {}), []);
+  const [_, setUpdated] = useState(Date.now());
+  const api = useMemo(
+    () => connector(config, () => setUpdated(Date.now())),
+    []
+  );
 
   useEffect(() => {
     api.connect();
