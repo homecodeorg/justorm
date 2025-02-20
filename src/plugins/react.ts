@@ -10,6 +10,8 @@ import connector, { Config } from '../connector';
 import { createConnectedStore } from '../create';
 import { createStore as _createStore } from '../';
 
+export { createClassStore } from '../createClassStore';
+
 function createUpdater(instance: Component<any, any>) {
   return () => instance.setState({ _justorm: Date.now() });
 }
