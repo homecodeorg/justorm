@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-28](https://github.com/foreverido/justorm/compare/v2.1.3...v3.0.0-beta-28) (2025-06-10)
+
+
+### Features
+
+* Typings & Tests ([15bfbeb](https://github.com/foreverido/justorm/commit/15bfbeba2fe10d07f307f1444e7a9de94da716fe))
+
 ## [3.0.0-beta-27](https://github.com/foreverido/justorm/compare/v3.0.0-beta-26...v3.0.0-beta-27) (2025-06-10)
 
 ## [3.0.0-beta-26](https://github.com/foreverido/justorm/compare/v3.0.0-beta-25...v3.0.0-beta-26) (2025-02-23)
