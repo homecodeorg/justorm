@@ -2,6 +2,85 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-beta-27](https://github.com/foreverido/justorm/compare/v3.0.0-beta-26...v3.0.0-beta-27) (2025-06-10)
+
+## [3.0.0-beta-26](https://github.com/foreverido/justorm/compare/v3.0.0-beta-25...v3.0.0-beta-26) (2025-02-23)
+
+## [3.0.0-beta-25](https://github.com/foreverido/justorm/compare/v3.0.0-beta-24...v3.0.0-beta-25) (2025-02-20)
+
+## [3.0.0-beta-24](https://github.com/foreverido/justorm/compare/v3.0.0-beta-23...v3.0.0-beta-24) (2025-02-13)
+
+
+### Bug Fixes
+
+* plugins/react useStore() updater ([635c4ba](https://github.com/foreverido/justorm/commit/635c4baa8c32b3e0f7e186966e9be261a0b7343e))
+
+## [3.0.0-beta-23](https://github.com/foreverido/justorm/compare/v3.0.0-beta-22...v3.0.0-beta-23) (2025-02-09)
+
+## [3.0.0-beta-22](https://github.com/foreverido/justorm/compare/v3.0.0-beta-21...v3.0.0-beta-22) (2025-02-09)
+
+
+### Bug Fixes
+
+* proxy.set ([b233f44](https://github.com/foreverido/justorm/commit/b233f44af82108b2e12f8ed49d09acb423296fbc))
+
+## [3.0.0-beta-21](https://github.com/foreverido/justorm/compare/v3.0.0-beta-20...v3.0.0-beta-21) (2025-02-08)
+
+
+### Bug Fixes
+
+* proxy.set trap - always return 'true' ([6972d54](https://github.com/foreverido/justorm/commit/6972d543afff272cc33ba457519d37cecfadfb41))
+
+## [3.0.0-beta-20](https://github.com/foreverido/justorm/compare/v3.0.0-beta-19...v3.0.0-beta-20) (2025-02-08)
+
+
+### Bug Fixes
+
+* Proxy.set - Array.length ([9edc5c5](https://github.com/foreverido/justorm/commit/9edc5c578b9262fdee21e64625468853e66f7ce0))
+
+## [3.0.0-beta-19](https://github.com/foreverido/justorm/compare/v3.0.0-beta-18...v3.0.0-beta-19) (2025-02-08)
+
+
+### Bug Fixes
+
+* rollback typescript plugin typescript-eslint-language-service ([e5beac4](https://github.com/foreverido/justorm/commit/e5beac455ea07b33618ce5e21df726baec01f497))
+
+## [3.0.0-beta-18](https://github.com/foreverido/justorm/compare/v3.0.0-beta-17...v3.0.0-beta-18) (2025-02-08)
+
+## [3.0.0-beta-17](https://github.com/foreverido/justorm/compare/v3.0.0-beta-16...v3.0.0-beta-17) (2025-02-08)
+
+
+### Bug Fixes
+
+* simplify ID generation ([4d0127c](https://github.com/foreverido/justorm/commit/4d0127c19fa2fac0d6f72023cd8c657a6297a161))
+
+## [3.0.0-beta-16](https://github.com/foreverido/justorm/compare/v3.0.0-beta-15...v3.0.0-beta-16) (2025-02-08)
+
+## [3.0.0-beta-15](https://github.com/foreverido/justorm/compare/v3.0.0-beta-14...v3.0.0-beta-15) (2025-02-08)
+
+## [3.0.0-beta-14](https://github.com/foreverido/justorm/compare/v3.0.0-beta-13...v3.0.0-beta-14) (2025-02-08)
+
+## [3.0.0-beta-13](https://github.com/foreverido/justorm/compare/v3.0.0-beta-12...v3.0.0-beta-13) (2024-11-06)
+
+
+### Bug Fixes
+
+* plugins/preact ([00aedb5](https://github.com/foreverido/justorm/commit/00aedb52a2ab4bb5566186a4f83a0e5400a739b6))
+
+## [3.0.0-beta-12](https://github.com/foreverido/justorm/compare/v3.0.0-beta-11...v3.0.0-beta-12) (2024-11-06)
+
+## [3.0.0-beta-11](https://github.com/foreverido/justorm/compare/v2.1.3...v3.0.0-beta-11) (2024-10-21)
+
+
+### Features
+
+* Typings & Tests ([15bfbeb](https://github.com/foreverido/justorm/commit/15bfbeba2fe10d07f307f1444e7a9de94da716fe))
+
+
+### Bug Fixes
+
+* createClassStore() and tests ([5eb0914](https://github.com/foreverido/justorm/commit/5eb09146b897689fa821e1084b4289f143cbc61c))
+
 ### [2.1.4](https://github.com/foreverido/justorm/compare/v2.1.3...v2.1.4) (2024-02-29)
 
 ### [2.1.3](https://github.com/foreverido/justorm/compare/v2.1.2...v2.1.3) (2022-07-26)

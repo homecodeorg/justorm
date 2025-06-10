@@ -1,8 +1,8 @@
 import compare from 'compareq';
-import { nanoid } from 'nanoid/non-secure';
 
 import { call } from './listeners';
 import { getFullPath } from './connector';
+import { generateId } from './id';
 
 function isObject(obj: any) {
   return typeof obj === 'object' && obj !== null;
@@ -19,7 +19,7 @@ function callBatchUpdate() {
   if (queueTimeout) return;
 
   queueTimeout = setTimeout(() => {
-    const id = nanoid();
+    const id = generateId();
     const queue = QUEUE.slice(0); // copy the queue
 
     QUEUE = [];
@@ -136,7 +136,7 @@ export function createProxy<T>({
     set: function (target: any, prop: string, value: any) {
       const prevValue = target[prop];
 
-      if (isReflected(target)) debugger;
+      // if (isReflected(target)) debugger;
 
       if (typeof prevValue === 'function') {
         console.error('Changing a store actions is prohibited');
@@ -144,12 +144,12 @@ export function createProxy<T>({
       }
 
       // if the value is the same - do nothing
-      if (compare(prevValue, value)) return false;
+      if (!compare(prevValue, value)) {
+        const fullPath = getFullPath(path, prop);
 
-      const fullPath = getFullPath(path, prop);
-
-      batchedUpdate(fullPath);
-      target[prop as string] = value;
+        batchedUpdate(fullPath);
+        target[prop] = value;
+      }
 
       return true;
     },

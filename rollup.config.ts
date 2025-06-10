@@ -30,41 +30,37 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      // file: 'index.js',
       dir: 'dist/esm',
       format: 'esm',
-      // name: 'justorm',
-      // globals: {
-      //   compare: 'compareq', // tell Rollup that `compareq` is a global variable
-      // },
       sourcemap: !isProduction,
       preserveModules: true,
+      preserveModulesRoot: 'src',
     },
     external: ['compareq'],
     plugins,
   },
-  // {
-  //   input: 'src/plugins/react.ts',
-  //   output: {
-  //     // file: 'dist/react.js',
-
-  //     dir: 'dist/esm',
-  //     format: 'esm',
-  //     // name: 'justorm',
-  //     sourcemap: !isProduction,
-  //     preserveModules: true,
-  //   },
-  //   external: ['compareq', 'react'],
-  //   plugins,
-  // },
-  // {
-  //   input: 'src/plugins/preact.ts',
-  //   output: {
-  //     file: 'preact.js',
-  //     format: 'esm',
-  //     name: 'justorm',
-  //   },
-  //   external: ['compareq', 'preact'],
-  //   plugins,
-  // },
+  {
+    input: 'src/plugins/react.ts',
+    output: {
+      dir: 'dist/esm',
+      format: 'esm',
+      sourcemap: !isProduction,
+      preserveModules: true,
+      preserveModulesRoot: 'src',
+    },
+    external: ['compareq', 'react'],
+    plugins,
+  },
+  {
+    input: 'src/plugins/preact.ts',
+    output: {
+      dir: 'dist/esm',
+      format: 'esm',
+      sourcemap: !isProduction,
+      preserveModules: true,
+      preserveModulesRoot: 'src',
+    },
+    external: ['compareq', 'preact'],
+    plugins,
+  },
 ];

@@ -1,5 +1,7 @@
 import STORE from './store';
 import { subscribe, unsubscribe } from './listeners';
+import type { ProxyStore } from './proxy';
+import type { StoreRegistry } from './store';
 
 /**
  * Constructs a full path from a store name and a path.
@@ -32,10 +34,11 @@ export function connect(
   fields: string[] | Function,
   cb?: Function
 ) {
-  console.log('connect', storeName, fields, cb);
+  // console.log('connect', storeName, fields, cb);
 
   if (typeof fields === 'function') {
     const store = STORE[storeName];
+    // console.log('Store found:', store);
 
     if (!store) {
       console.warn(`Store ${storeName} does not exist`);
@@ -44,8 +47,9 @@ export function connect(
 
     cb = fields;
     fields = Object.keys(store.toJS());
+    // console.log('Fields:', fields);
 
-    if (!fields?.length) {
+    if (!fields || fields.length === 0) {
       console.warn(`Store ${storeName} has no fields`);
       return;
     }
@@ -55,9 +59,11 @@ export function connect(
     throw new Error('Callback function is required');
   }
 
+  // console.log('Subscribing to fields:', fields);
   fields.forEach(field =>
     subscribe(getFullPath(storeName, field), cb as Function)
   );
+  // console.log('Subscription complete');
 }
 
 /**
@@ -81,6 +87,28 @@ export function disconnect(
 }
 
 export type Config = string | string[] | Record<string, string | string[]>;
+
+// Extract store names from config
+type ExtractStoreNames<T> = T extends string
+  ? T
+  : T extends readonly string[]
+  ? T[number]
+  : T extends Record<string, any>
+  ? keyof T
+  : never;
+
+// Get the type of a store from the StoreRegistry
+type GetStoreType<StoreName extends string> =
+  StoreName extends keyof StoreRegistry ? StoreRegistry[StoreName] : any;
+
+// Map config to proper store types
+export type InferStoreFromConfig<T extends Config> = T extends string
+  ? { [K in T]: GetStoreType<K> }
+  : T extends readonly string[]
+  ? { [K in T[number]]: GetStoreType<K> }
+  : T extends Record<string, any>
+  ? { [K in keyof T]: GetStoreType<K & string> }
+  : Record<string, any>;
 
 type Entries = [string, string[]][];
 
@@ -111,8 +139,8 @@ function getEntries(config: Config): Entries {
   }, [] as Entries);
 }
 
-export type StoreConnector = {
-  store: Record<string, unknown>;
+export type StoreConnector<T extends Config = Config> = {
+  store: InferStoreFromConfig<T>;
   connect: Function;
   disconnect: Function;
 };
@@ -124,27 +152,25 @@ export type StoreConnector = {
  * @param cb - The callback function.
  * @returns An object with the store and connect/disconnect methods.
  */
-export default function connector(
-  config: Config,
+export default function connector<T extends Config>(
+  config: T,
   cb: Function
-): StoreConnector {
+): StoreConnector<T> {
   const entries = getEntries(config);
 
-  console.log('connector() entries -', entries);
+  // console.log('connector() entries -', entries);
 
   const store = entries.reduce(function (acc, s) {
     const name = s[0];
     return Object.assign(acc, { [name]: STORE[name] });
-  }, {});
+  }, {} as Record<string, any>);
 
   return {
-    store,
+    store: store as InferStoreFromConfig<T>,
     connect: function () {
-      // @ts-ignore
       entries.forEach(([name, fields]) => connect(name, fields, cb));
     },
     disconnect: function () {
-      // @ts-ignore
       entries.forEach(([name, fields]) => disconnect(name, fields, cb));
     },
   };

@@ -6,12 +6,15 @@
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "dist",
-    "baseUrl": "./",
-    "rootDir": "./",
+    "outDir": "dist/esm",
+    "baseUrl": ".",
+    "rootDir": "src",
     "declaration": true,
-    "declarationDir": "dist/esm/types"
+    "paths": {
+      "compareq": ["./declaration.d.ts"]
+    }
   },
-  "plugins": ["typescript-eslint-language-service"],
-  "exclude": ["rollup.config.js"]
+  "include": ["src"],
+  "exclude": ["rollup.config.ts", "tests"],
+  "plugins": ["typescript-eslint-language-service"]
 }
