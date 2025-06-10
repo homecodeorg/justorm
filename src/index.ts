@@ -1,7 +1,8 @@
 import connector, { Config } from './connector';
 
-export { createStore } from './create';
+export { createStore, StoreShape, InferStoreType } from './create';
 export { createClassStore } from './createClassStore';
+export type { InferStoreFromConfig, Config } from './connector';
 
 /**
  * Creates a connection to a store or stores specified in the configuration

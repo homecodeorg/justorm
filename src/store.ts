@@ -1,5 +1,12 @@
+import type { ProxyStore } from './proxy';
+
+// Global store type registry - users can augment this interface
+export interface StoreRegistry {
+  // This will be augmented by createStore calls
+}
+
 interface StoreType {
-  [key: string]: any; // adjust this to match the actual structure of your objects
+  [key: string]: ProxyStore<any>; // Store proxied objects
 }
 
 let STORE: StoreType = {};

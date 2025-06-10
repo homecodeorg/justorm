@@ -8,21 +8,17 @@ Simple state/store manager based on [Proxy](https://developer.mozilla.org/en/doc
 
 - `createStore(name, object)` – creates new store with provided name
 
-  > NOTE: Using with React or Preact you can pass `this` instead of name to create local component store.
-  >
-  > See [Create local store](#create-local-store).
+- `useStore(config: string | object | array )` – subscribe component to store
 
-- `withStore(config: string | object | array )` – subscribe component to store
+  - `useStore({ user: ['firstName'] })` – to field `firstName` of store `user`
 
-  - `withStore({ user: ['firstName'] })` – to field `firstName` of store `user`
+  - `useStore({ user: true })` – to all fields of store `user`
 
-  - `withStore({ user: true })` – to all fields of store `user`
+  - `useStore('user')` – to all fields of stores `user`
 
-  - `withStore('user')` – to all fields of stores `user`
+  - `useStore(['user', 'auth'])` - to all fields of stores `user` and `auth`
 
-  - `withStore(['user', 'auth'])` - to all fields of stores `user` and `auth`
-
-  - `withStore(['user', { auth: ['isAuthorized'] }])`
+  - `useStore(['user', { auth: ['isAuthorized'] }])`
     - to all fields of stores `user`
     - and field `isAuthorized` of store `auth`
 
@@ -37,44 +33,18 @@ Simple state/store manager based on [Proxy](https://developer.mozilla.org/en/doc
 ```js
 import { createStore, connect, disconnect } from 'justorm'; // for VanillaJS
 // or
-import { createStore, withStore } from 'justorm/react'; // for React
+import { createStore, useStore } from 'justorm/react'; // for React
 // or
-import { createStore, withStore } from 'justorm/preact'; // for Preact
+import { createStore, useStore } from 'justorm/preact'; // for Preact
 ```
 
-> NOTE: You don't need to unsubscribe from store when usign decorator `withStore`. `withStore` do it for you.
+> NOTE: You don't need to unsubscribe from store when using decorator `useStore`. `useStore` do it for you.
 
-## Create local store
-
-[Demo](https://codesandbox.io/s/justorm-local-store-4tsn7).
-
-```js
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.store = createStore(this, { count: 0 });
-  }
-
-  onClick = () => {
-    this.store.count++;
-  };
-
-  render() {
-    const { count } = this.store;
-
-    return [
-      'Hi there!',
-      count,
-      <button onClick={this.onClick}>click me</button>,
-    ];
-  }
-}
-```
-
-## Create shared store
+## Create store
 
 Describe store and actions in one place. [Demo](https://codesandbox.io/s/justorm-shared-store-yb5jg).
 
+```js
 createStore('user', {
   isLogged: false,
   login() {
@@ -90,7 +60,7 @@ createStore('user', {
 
 You can also create a store using a class definition with the `createClassStore` function. This approach provides better TypeScript support and allows for more complex store structures.
 
-```typescript
+```js
 import { createClassStore } from 'justorm';
 
 class UserStore {
@@ -107,49 +77,13 @@ class UserStore {
 
 const userStore = createClassStore('user', UserStore);
 
-// Using the class-based store with withStore
-withStore({ user: ['isLogged'] })(function App({ store }) {
-  const { isLogged, login, logout } = store.user;
+function App() {
+  const { isLogged, login, logout } = userStore({ user: ['isLogged'] });
 
   const onClick = isLogged ? logout : login;
   const text = isLogged ? 'logout' : 'login';
 
   return <button onClick={onClick}>{text}</button>;
-});
-
-// You can also use withStore as a decorator for class components
-@withStore({ user: ['isLogged'] })
-class AppClass extends Component {
-  render({ store }) {
-    const { isLogged, login, logout } = store.user;
-    const onClick = isLogged ? logout : login;
-    const text = isLogged ? 'logout' : 'login';
-
-    return <button onClick={onClick}>{text}</button>;
-  }
-}
-
-// Specify store fields that you want to get updates from
-
-  const onClick = isLogged ? logout : login;
-  const text = isLogged ? 'logout' : 'login';
-
-  return <button onClick={onClick}>{text}</button>;
-});
-```
-
-Use `withStore` as decorator for class components.
-
-```js
-@withStore({ user: ['isLogged'] })
-class App extends Component {
-  render({ store }) {
-    const { isLogged, login, logout } = store.user;
-    const onClick = isLogged ? logout : login;
-    const text = isLogged ? 'logout' : 'login';
-
-    return <button onClick={onClick}>{text}</button>;
-  }
 });
 ```
 

@@ -1,59 +1,29 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  Component,
-  FunctionComponent,
-} from 'react';
+import * as React from 'react';
+const { useState, useEffect, useMemo } = React;
 
-import connector, { Config } from '../connector';
+import connector, { Config, InferStoreFromConfig } from '../connector';
 import { createConnectedStore } from '../create';
 import { createStore as _createStore } from '../';
 
 export { createClassStore } from '../createClassStore';
 
-function createUpdater(instance: Component<any, any>) {
+function createUpdater(instance: React.Component<any, any>) {
   return () => instance.setState({ _justorm: Date.now() });
 }
 
-export function createStore(instance: Component<any, any>, obj: any) {
+export function createStore(instance: React.Component<any, any>, obj: any) {
   if (typeof instance === 'string') return _createStore(instance, obj);
   return createConnectedStore(obj, createUpdater(instance));
 }
 
 /**
- * Connects a React component to a store or a set of stores.
- * @param config
- * @returns
- */
-export function withStore(config: Config = {}) {
-  return function (WrappedComponent: FunctionComponent) {
-    return function WithStoreComponent(props: any) {
-      const [updated, setUpdated] = useState(Date.now());
-      const justormAPI = connector(config, () => setUpdated(Date.now()));
-      const store = justormAPI.store.originalObject;
-
-      useEffect(() => {
-        justormAPI.connect();
-        return () => {
-          justormAPI.disconnect();
-        };
-      }, []);
-
-      return React.createElement(
-        WrappedComponent,
-        Object.assign({ store, key: updated }, props)
-      );
-    };
-  };
-}
-
-/**
  * Subscribes to a store or a set of stores and returns the store object.
- * @param config
- * @returns
+ * For better typing, use the overload with explicit type parameter:
+ * useStore<{user: UserStoreType}>({user: ['a']})
  */
-export function useStore(config: Config = {}) {
+export function useStore<
+  T extends Record<string, any> = InferStoreFromConfig<Config>
+>(config: Config): T {
   const [_, setUpdated] = useState(Date.now());
   const api = useMemo(
     () => connector(config, () => setUpdated(Date.now())),
@@ -65,5 +35,5 @@ export function useStore(config: Config = {}) {
     return () => api.disconnect();
   }, []);
 
-  return api.store;
+  return api.store as T;
 }
