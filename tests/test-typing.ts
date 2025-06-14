@@ -1,5 +1,6 @@
 // Test file to verify typing improvements
 import { createStore } from '../src/index';
+// import { createStore } from '../src/plugins/react';
 import { useStore } from '../src/plugins/react';
 
 const userStore = createStore('user', {
