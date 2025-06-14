@@ -4,14 +4,22 @@ const { useState, useEffect, useMemo } = React;
 import connector, { Config, InferStoreFromConfig } from '../connector';
 import { createConnectedStore } from '../create';
 import { createStore as _createStore } from '../';
+import type { ProxyStore } from '../proxy';
 
 function createUpdater(instance: React.Component<any, any>) {
   return () => instance.setState({ _justorm: Date.now() });
 }
 
-export function createStore(instance: React.Component<any, any>, obj: any) {
-  if (typeof instance === 'string') return _createStore(instance, obj);
-  return createConnectedStore(obj, createUpdater(instance));
+export function createStore<T extends Record<string, any>>(
+  instance: React.Component<any, any> | string,
+  obj: T & ThisType<T>
+): ProxyStore<T> {
+  if (typeof instance === 'string')
+    return _createStore(instance, obj) as ProxyStore<T>;
+  return createConnectedStore(
+    obj,
+    createUpdater(instance as React.Component<any, any>)
+  ) as ProxyStore<T>;
 }
 
 /**
