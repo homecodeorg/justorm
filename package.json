@@ -16,9 +16,9 @@
     "release:major": "standard-version --release-as major --no-verify"
   },
   "bugs": {
-    "url": "https://github.com/foreverido/justorm/issues"
+    "url": "https://github.com/homecodeorg/justorm/issues"
   },
-  "homepage": "https://github.com/foreverido/justorm#readme",
+  "homepage": "https://github.com/homecodeorg/justorm#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/homecodeorg/justorm.git"
