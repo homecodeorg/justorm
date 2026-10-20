@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.3](https://github.com/homecodeorg/justorm/compare/v3.0.0...v3.0.3) (2026-10-20)
+
+
+### Bug Fixes
+
+* typing for plugins/react/createStore() ([55d84e6](https://github.com/homecodeorg/justorm/commit/55d84e63b50d3478cb86b920b66ae6c219e0fb78))
+
 ### [3.0.2](https://github.com/foreverido/justorm/compare/v3.0.1...v3.0.2) (2025-06-14)
 
 
