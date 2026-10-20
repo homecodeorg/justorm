@@ -36,7 +36,7 @@
   "types": "dist/esm/index.d.ts",
   "type": "module",
   "dependencies": {
-    "compareq": "^1.2.2"
+    "compareq": "^1.2.3"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.0",
